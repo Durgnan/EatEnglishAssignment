@@ -1,0 +1,153 @@
+<?xml version="1.0"?>
+
+    <RelativeLayout
+    android:id="@+id/rl"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/sview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="30dp"
+            android:layout_marginLeft="30dp"
+            android:textColor="#000000"
+            android:text="Status: "/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="30dp"
+            android:layout_marginLeft="60dp"
+            android:textColor="#4CAF50"
+            android:text="Unsuccessful"
+            android:layout_toRightOf="@+id/sview"
+            android:id="@+id/status"/>
+
+        <TextView
+            android:id="@+id/sview1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="25dp"
+            android:layout_marginLeft="20dp"
+            android:textColor="#000000"
+            android:text="Session ID: "
+            android:layout_below="@+id/sview"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="30dp"
+            android:textColor="#4CAF50"
+            android:text="NULL"
+            android:layout_toRightOf="@+id/sview1"
+            android:layout_below="@+id/sview"
+            android:id="@+id/devid"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/Browse"
+            android:text="Browse"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/LastAccessTime"
+            android:layout_marginVertical="30dp"/>
+
+        <Button
+            android:id="@+id/log"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Logout"
+            android:layout_below="@+id/Browse"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/username"
+            android:layout_below="@+id/devid">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Username"
+            android:padding="20dp"
+            android:textColor="#000000"
+            />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="anonymous"
+                android:padding="20dp"
+                android:layout_marginLeft="48dp"
+                android:id="@+id/uview"
+                android:textColor="#4CAF50"/>
+        </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/LoginTime"
+        android:layout_below="@+id/username">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Login Time"
+            android:padding="20dp"
+            android:textColor="#000000"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="12:00:00"
+            android:padding="20dp"
+            android:id="@+id/lotview"
+            android:layout_marginLeft="42dp"
+            android:textColor="#4CAF50"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/LogDevice"
+        android:layout_below="@+id/LoginTime">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Logged Device"
+            android:padding="20dp"
+            android:textColor="#000000"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="aaaaaa"
+            android:padding="20dp"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/lodview"
+            android:textColor="#4CAF50"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/LastAccessTime"
+        android:layout_below="@+id/LogDevice">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Last Access Time"
+
+            android:padding="20dp"
+            android:textColor="#000000"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="12:00:00"
+            android:padding="20dp"
+            android:id="@+id/latview"
+            android:textColor="#4CAF50"/>
+    </LinearLayout>
+
+</RelativeLayout>
