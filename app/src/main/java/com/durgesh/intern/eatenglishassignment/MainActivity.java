@@ -84,25 +84,34 @@ class Authenticate extends AsyncTask<Object,Void,String> {
             if (username == "" || password == "") {
                 return "";
             }
+            try {
+                String link2 = "http://4thidioteducation.com/intern/login_android.php?Log_Username=" + username + "&&Log_Password=" + password;
+                HttpManager hm = new HttpManager();
+                String res = hm.getData(link2);
+                if (res==null)
+                {
+                    return null;
+                }
+                if (res.contains("success")) {
+                    Log.e("Status", "Success");
+                    status = "success";
+
+                    String  Session_id = res.substring(37, res.length() - 3);
+                    Log.e("Session ID", Session_id);
+                    //String[] abc= {username,status,Session_id};
+                    return Session_id;
+
+
+                } else {
+                    Log.e("Status", "Failed");
+                    return "";
+                }
+            }catch (Exception e){
+                e.printStackTrace();
+            }
             //String link = "http://192.168.43.233:8080/andro/login_android.php?Log_Username="+username+"&&Log_Password="+password;
             //String link1 = "http://eatenglish.in/intern/andro1/a_login_android.php?Log_Username=admin4&&Log_Password=dddd";
-            String link2 = "http://4thidioteducation.com/intern/login_android.php?Log_Username=" + username + "&&Log_Password=" + password;
-            HttpManager hm = new HttpManager();
-            String res = hm.getData(link2);
-            if (res.contains("success")) {
-                Log.e("Status", "Success");
-                status = "success";
 
-                String  Session_id = res.substring(37, res.length() - 3);
-                Log.e("Session ID", Session_id);
-                //String[] abc= {username,status,Session_id};
-                return Session_id;
-
-
-            } else {
-                Log.e("Status", "Failed");
-                return "";
-            }
         }
 
 
@@ -119,13 +128,17 @@ class Authenticate extends AsyncTask<Object,Void,String> {
     protected void onPostExecute( String result) {
       //  super.onPostExecute(result);
        Context context = this.contextReference.get();
+       if (result==null)
+       {
+           Toast.makeText(context,"Connection Problem !! Please try again.",Toast.LENGTH_LONG).show();
+       }
        if(context != null) {
            // Do your work
            try {
                if (!result.equalsIgnoreCase(""))
                {
                    Log.e("Message", "Login Successful");
-                   context.startActivity(new Intent(context,Login.class).putExtra("id",result).putExtra("user",username));
+                   context.startActivity(new Intent(context,Browse.class).putExtra("id",result).putExtra("user",username));
 
 
                }

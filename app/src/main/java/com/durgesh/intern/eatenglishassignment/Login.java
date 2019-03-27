@@ -40,27 +40,15 @@ public class Login extends AppCompatActivity implements Member.AsyncResponse
 
 
         //ID's
-        Button logout = findViewById(R.id.log);
         textView1 = findViewById(R.id.status);
         textView2 = findViewById(R.id.devid);
-        browse = findViewById(R.id.Browse);
         final String status = textView1.getText().toString();
-        browse.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                    Intent i = new Intent(Login.this, Browse.class);
-                    startActivity(i);
-
-            }
-        });
-
-        logout.setOnClickListener(listen);
         textView1.setText("Successful");
         Bundle bundle = getIntent().getExtras();
         String id = bundle.getString("id");
         String uname = bundle.getString("user");
 
-        Log.e("M!",uname+"  "+id);
+        //Log.e("M!",uname+"  "+id);
         textView2.setText(id);
         Activity act = getParent();
 
@@ -74,23 +62,7 @@ public class Login extends AppCompatActivity implements Member.AsyncResponse
 
 
     }
-    private View.OnClickListener listen = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Toast.makeText(Login.this,"Logged Out Successfully",Toast.LENGTH_LONG).show();
-            Intent i = new Intent(Login.this,MainActivity.class);
 
-            MemberDetails.username1="";
-            MemberDetails.loggeddevice1="";
-            MemberDetails.lastaccesstime1="";
-            MemberDetails.logintime1="";
-            textView1.setText("Failed");
-            textView2.setText("");
-
-            startActivity(i);
-            finish();
-        }
-    };
 
 
     @Override

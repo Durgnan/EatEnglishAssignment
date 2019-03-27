@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">EatEnglishAssignment</string>
+    <string name="site_name">http://4thidioteducation.com/gbm/andro/eatenglish/10/math_level_android.php</string>
+    <string name="title_activity_browse1">Browse1</string>
+    <string name="title_activity_browse2">Browse2</string>
+    <integer name="speed1">200</integer>
+    <integer name="speed2">50</integer>
 </resources>

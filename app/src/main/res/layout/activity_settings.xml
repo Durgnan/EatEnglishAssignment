@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+        tools:context=".Settings"
+    android:background="#ffffff">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sound: "
+                    android:textColor="#383838"
+                    android:padding="25dp"
+                    android:textSize="25sp"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_volume_up_black_24dp"
+
+                    android:layout_marginLeft="10dp"/>
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:background="#161616"
+                android:layout_height="1dp"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Speed: "
+                        android:textColor="#383838"
+                        android:padding="25dp"
+                        android:textSize="25sp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="200"
+                        android:id="@+id/speed1"
+                        android:textColor="#000000"
+                        android:padding="25dp"
+                        android:textSize="25sp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="(words per millisecond)"
+                        android:textColor="#383838"
+                        android:padding="20dp"
+                        android:textSize="15sp"/>
+
+
+
+                </LinearLayout>
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:layout_alignParentLeft="true"
+                        android:text="200"
+                        android:textColor="#000000"
+                        android:paddingHorizontal="10dp"
+                        android:textSize="20sp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+
+                        android:text="2500"
+                        android:textColor="#000000"
+                        android:paddingHorizontal="10dp"
+                        android:textSize="20sp"/>
+                </RelativeLayout>
+
+
+                <SeekBar
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="10dp"
+                    android:outlineAmbientShadowColor="#000000"
+                    android:paddingBottom="25dp"
+                    android:id="@+id/seekBar1"
+                    android:max="2500"
+                    android:tooltipText="@string/appbar_scrolling_view_behavior"
+                    android:min="200"
+                    android:pointerIcon="arrow"
+
+                    />
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:background="#161616"
+                android:layout_height="1dp"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Speak Sound: "
+                    android:textColor="#383838"
+                    android:padding="25dp"
+                    android:textSize="25sp"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_volume_up_black_24dp"
+
+                    android:layout_marginLeft="10dp"/>
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:background="#161616"
+                android:layout_height="1dp"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Speed: "
+                        android:textColor="#383838"
+                        android:padding="25dp"
+                        android:textSize="25sp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="50"
+                        android:textColor="#000000"
+                        android:id="@+id/speed2"
+                        android:padding="25dp"
+                        android:textSize="25sp"/>
+
+
+
+                </LinearLayout>
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:layout_alignParentLeft="true"
+                        android:text="0"
+                        android:textColor="#000000"
+                        android:paddingHorizontal="10dp"
+                        android:textSize="20sp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+
+                        android:text="100"
+                        android:textColor="#000000"
+                        android:paddingHorizontal="10dp"
+                        android:textSize="20sp"/>
+                </RelativeLayout>
+                <SeekBar
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="10dp"
+                    android:outlineAmbientShadowColor="#000000"
+                    android:pointerIcon="arrow"
+                    android:paddingBottom="25dp"
+                    android:id="@+id/seekBar2"
+                    android:tooltipText="@string/appbar_scrolling_view_behavior"
+                    android:max="100"
+                    android:min="0"
+
+                    />
+
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:background="#161616"
+                android:layout_height="1dp"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/speak"
+                android:layout_gravity="center"
+                android:text="speak"
+                />
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>
