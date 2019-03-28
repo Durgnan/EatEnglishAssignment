@@ -100,13 +100,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginHorizontal="10dp"
-                    android:outlineAmbientShadowColor="#000000"
                     android:paddingBottom="25dp"
                     android:id="@+id/seekBar1"
                     android:max="2500"
-                    android:tooltipText="@string/appbar_scrolling_view_behavior"
                     android:min="200"
-                    android:pointerIcon="arrow"
 
                     />
             </LinearLayout>
@@ -192,11 +189,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginHorizontal="10dp"
-                    android:outlineAmbientShadowColor="#000000"
-                    android:pointerIcon="arrow"
                     android:paddingBottom="25dp"
                     android:id="@+id/seekBar2"
-                    android:tooltipText="@string/appbar_scrolling_view_behavior"
                     android:max="100"
                     android:min="0"
 
@@ -210,13 +204,6 @@
                 android:layout_width="match_parent"
                 android:background="#161616"
                 android:layout_height="1dp"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/speak"
-                android:layout_gravity="center"
-                android:text="speak"
-                />
 
         </LinearLayout>
 

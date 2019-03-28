@@ -1,6 +1,7 @@
 package com.durgesh.intern.eatenglishassignment;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.speech.tts.TextToSpeech;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -26,6 +27,8 @@ public class ShowContent extends AppCompatActivity {
     Toolbar toolbar;
     TextToSpeech textToSpeech;
     TextToSpeech textToSpeech1;
+    SeekBarAdapter mydb;
+    int speed1,speed2;
     String id,uname;
     int i=0;
     Button b1;
@@ -38,6 +41,11 @@ public class ShowContent extends AppCompatActivity {
         b1 = findViewById(R.id.press);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        mydb=new SeekBarAdapter(this);
+        Cursor rs = mydb.getData();
+        rs.moveToFirst();
+        speed1 = rs.getInt(0);
+        speed2=rs.getInt(1);
         try{
             textToSpeech=new TextToSpeech(this, new TextToSpeech.OnInitListener() {
                 @Override
@@ -107,6 +115,7 @@ public class ShowContent extends AppCompatActivity {
                     public void onClick(View v) {
                         textToSpeech1.speak(t1.getText().toString(), TextToSpeech.QUEUE_FLUSH, null);
                         textToSpeech1.speak(t2.getText().toString(), TextToSpeech.QUEUE_FLUSH, null);
+
 
                     }
                 });
