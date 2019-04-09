@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:id="@+id/lin"
@@ -16,21 +16,28 @@
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         />
-<WebView android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/webView"
 
-    />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="Please Wait!!"
-        android:textSize="25dp"
-        android:id="@+id/text5"
-        android:textColor="#000000"
-        android:visibility="invisible"
-        />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <WebView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/webView"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Please Wait!!"
+            android:textSize="25dp"
+            android:id="@+id/text5"
+            android:textColor="#000000"
+            android:visibility="invisible"
+            />
+    </RelativeLayout>
 
 
-</RelativeLayout>
+
+</LinearLayout>

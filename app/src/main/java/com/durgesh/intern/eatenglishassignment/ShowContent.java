@@ -2,6 +2,8 @@ package com.durgesh.intern.eatenglishassignment;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.media.MediaPlayer;
+import android.os.Handler;
 import android.speech.tts.TextToSpeech;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,9 +12,13 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.durgesh.intern.eatenglishassignment.adapters.SeekBarAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -21,17 +27,16 @@ import java.util.Locale;
 
 public class ShowContent extends AppCompatActivity {
     JSONArray jsonArray;
-    String url;
-    TextView t1;
-    TextView t2;
+    String url,id,uname;
+    TextView t1, t2;
     Toolbar toolbar;
-    TextToSpeech textToSpeech;
-    TextToSpeech textToSpeech1;
+    TextToSpeech textToSpeech, textToSpeech1;
     SeekBarAdapter mydb;
-    int speed1,speed2;
-    String id,uname;
-    int i=0;
+    MediaPlayer mp;
+    int speed1,speed2,v1,v2,v3,v4,i=0;
+    Cursor rs;
     Button b1;
+    Animation animation2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,13 +44,26 @@ public class ShowContent extends AppCompatActivity {
         t1 = findViewById(R.id.q2);
         t2 = findViewById(R.id.a2);
         b1 = findViewById(R.id.press);
+
+        mp = MediaPlayer.create(getApplicationContext(), R.raw.audiofile1);
+        animation2 = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.anim_leave);
+
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
         mydb=new SeekBarAdapter(this);
-        Cursor rs = mydb.getData();
+        rs = mydb.getData();
         rs.moveToFirst();
         speed1 = rs.getInt(0);
         speed2=rs.getInt(1);
+        v1=rs.getInt(2);
+        v2=rs.getInt(3);
+        v3=rs.getInt(4);
+        v4=rs.getInt(5);
+
+
         try{
             textToSpeech=new TextToSpeech(this, new TextToSpeech.OnInitListener() {
                 @Override
@@ -106,6 +124,7 @@ public class ShowContent extends AppCompatActivity {
             b1.setText("Next");
             if (url.equalsIgnoreCase("READ"))
             {
+                textToSpeech1.setSpeechRate((float)(rs.getFloat(1)*2)/100);
                 Log.e("Message","ReadNotes.php");
                 Button b2 = findViewById(R.id.listenthis);
                 b2.setEnabled(true);
@@ -113,7 +132,9 @@ public class ShowContent extends AppCompatActivity {
                 b2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        if (v3==1)
                         textToSpeech1.speak(t1.getText().toString(), TextToSpeech.QUEUE_FLUSH, null);
+                        if (v4==1)
                         textToSpeech1.speak(t2.getText().toString(), TextToSpeech.QUEUE_FLUSH, null);
 
 
@@ -125,6 +146,7 @@ public class ShowContent extends AppCompatActivity {
             }
             if(url.equalsIgnoreCase("DO"))
             {
+                b1.setVisibility(View.INVISIBLE);
                 Log.e("Message","Do.php");
                 doAssignment();
             }
@@ -147,36 +169,59 @@ public class ShowContent extends AppCompatActivity {
     };
     void doAssignment()
     {
+        textToSpeech1.setSpeechRate((float)(rs.getFloat(1)*2)/100);
+        final Handler handler = new Handler();
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    if (v1==1)
+                        mp.start();
 
-        try {
-            t1.setText(jsonArray.getJSONObject(i).getString("q2"));
-            t2.setText("");
-            textToSpeech1.speak(t1.getText().toString(), TextToSpeech.QUEUE_FLUSH, null);
-            t2.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        t2.setText(jsonArray.getJSONObject(i-1).getString("a2"));
-                        textToSpeech1.speak(t2.getText().toString(), TextToSpeech.QUEUE_FLUSH, null);
+                    String question = "[Q"+i+"] "+jsonArray.getJSONObject(i).getString("q1")+" "+jsonArray.getJSONObject(i).getString("q2")+"\n"+jsonArray.getJSONObject(i).getString("q3");
+                    t1.setText(question);
+                    t1.startAnimation(animation2);
+                    t2.setText("");
+                    if (v3==1)
+                        textToSpeech1.speak(t1.getText().toString(), TextToSpeech.QUEUE_FLUSH, null);
+                    t1.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                if (v2==1)
+                                    mp.start();
+                                String answer = "[A"+(i-1)+"] "+jsonArray.getJSONObject(i-1).getString("a1")+" "+jsonArray.getJSONObject(i-1).getString("a2")+"\n"+jsonArray.getJSONObject(i-1).getString("a3");
+                                t1.setText(answer);
+                                t1.startAnimation(animation2);
+                                if (v4==1)
+                                    textToSpeech1.speak(t1.getText().toString(), TextToSpeech.QUEUE_FLUSH, null);
 
 
 
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    },5000);
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
-            },5000);
+                i++;
+                if (i>jsonArray.length())
+                {
+                    i=0;
+                    handler.removeCallbacks(this);
+                    doAssignment();
+                }
+                else
+                    handler.postDelayed(this,10*1000);
+            }
+        });
 
 
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        i++;
-        if (i>=jsonArray.length())
-        {
-            b1.setText("End");
-            b1.setEnabled(false);
-        }
+
 
 
     }
@@ -184,62 +229,79 @@ public class ShowContent extends AppCompatActivity {
     void readFunction()
 
     {
+        final Handler handler = new Handler();
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
 
-        try {
-            t1.setText(jsonArray.getJSONObject(i).getString("q2"));
-            t2.setText("");
-         //   textToSpeech1.speak(t1.getText().toString(), TextToSpeech.QUEUE_FLUSH, null);
-            t2.postDelayed(new Runnable() {
+
+
+                try {
+                    if (v1==1)
+                        mp.start();
+                    String question = "[Q"+i+"] "+jsonArray.getJSONObject(i).getString("q1")+" "+jsonArray.getJSONObject(i).getString("q2")+"\n"+jsonArray.getJSONObject(i).getString("q3");
+                    t1.setText(question);
+                    t1.startAnimation(animation2);
+                    t2.setText("");
+                    t2.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     try {
-                        t2.setText(jsonArray.getJSONObject(i-1).getString("a2"));
-           //             textToSpeech.speak(t2.getText().toString(), TextToSpeech.QUEUE_FLUSH, null);
-
+                        if (v2==1)
+                            mp.start();
+                        String answer = "[A"+(i-1)+"] "+jsonArray.getJSONObject(i-1).getString("a1")+" "+jsonArray.getJSONObject(i-1).getString("a2")+"\n"+jsonArray.getJSONObject(i-1).getString("a3");
+                        t2.setText(answer);
+                        t2.startAnimation(animation2);
 
 
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 }
-            },5000);
+            },4500);
 
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
         i++;
-        if (i>=jsonArray.length())
-        {
-            b1.setText("End");
-            b1.setEnabled(false);
-        }
+                if (i>jsonArray.length())
+                {
+                    i=0;
+                    handler.removeCallbacks(this);
+                    readFunction();
+
+                }
+                else
+                    handler.postDelayed(this,7500);
+            }
+        });
 
     }
     @Override
     protected void onPause() {
-        if (textToSpeech!=null)
+        if (textToSpeech1!=null)
         {
-            textToSpeech.stop();
-            textToSpeech.shutdown();
+            textToSpeech1.stop();
+            textToSpeech1.shutdown();
         }
+        mp.pause();
+        mp.stop();
         super.onPause();
     }
 
     @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        try {
-            Intent i = new Intent(ShowContent.this,Browse.class).putExtra("id",id).putExtra("user",uname);
-            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(i);
-            finish();
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
-
+    protected void onDestroy() {
+        mp.stop();
+        super.onDestroy();
     }
+
+    @Override
+    public void onBackPressed() {
+        mp.stop();
+        super.onBackPressed();
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_browse,menu);
@@ -269,6 +331,11 @@ public class ShowContent extends AppCompatActivity {
 
         }
         return super.onOptionsItemSelected(item);
+    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 
 }

@@ -1,18 +1,27 @@
 <?xml version="1.0"?>
 
-    <RelativeLayout
+    <LinearLayout
     android:id="@+id/rl"
     android:layout_width="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
-    android:background="#ffffff">
-
+    android:background="#ffffff"
+    android:orientation="vertical"
+    >
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#161616"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
         <TextView
             android:id="@+id/sview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="30dp"
-
             android:textColor="#000000"
             android:text="Status: "/>
 
@@ -23,18 +32,26 @@
             android:layout_marginLeft="60dp"
             android:textColor="#4CAF50"
             android:text="Unsuccessful"
-            android:layout_toRightOf="@+id/sview"
             android:id="@+id/status"/>
 
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#161616"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
         <TextView
             android:id="@+id/sview1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="25dp"
-
             android:textColor="#000000"
             android:text="Session ID: "
-            android:layout_below="@+id/sview"/>
+            />
 
         <TextView
             android:layout_width="wrap_content"
@@ -42,16 +59,20 @@
             android:padding="30dp"
             android:textColor="#4CAF50"
             android:text="NULL"
-            android:layout_toRightOf="@+id/sview1"
-            android:layout_below="@+id/sview"
             android:id="@+id/devid"/>
-        <LinearLayout
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#161616"/>
+    <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:id="@+id/username"
-            android:layout_below="@+id/devid">
-        <TextView
+           >
+            <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Username"
@@ -67,20 +88,24 @@
                 android:id="@+id/uview"
                 android:textColor="#4CAF50"/>
         </LinearLayout>
-    <LinearLayout
+    <View
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:id="@+id/LoginTime"
-        android:layout_below="@+id/username">
-        <TextView
+        android:layout_height="2dp"
+        android:background="#161616"/>
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/LoginTime"
+        >
+            <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Login Time"
             android:padding="20dp"
             android:textColor="#000000"
             />
-        <TextView
+            <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="12:00:00"
@@ -88,13 +113,17 @@
             android:id="@+id/lotview"
             android:layout_marginLeft="42dp"
             android:textColor="#4CAF50"/>
-    </LinearLayout>
+        </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#161616"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:id="@+id/LogDevice"
-        android:layout_below="@+id/LoginTime">
+        >
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -111,17 +140,20 @@
             android:id="@+id/lodview"
             android:textColor="#4CAF50"/>
     </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#161616"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:id="@+id/LastAccessTime"
-        android:layout_below="@+id/LogDevice">
+      >
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Last Access Time"
-
             android:padding="20dp"
             android:textColor="#000000"
             />
@@ -133,5 +165,9 @@
             android:id="@+id/latview"
             android:textColor="#4CAF50"/>
     </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#161616"/>
 
-</RelativeLayout>
+</LinearLayout>

@@ -28,7 +28,6 @@ public class Login extends AppCompatActivity implements Member.AsyncResponse
     TextView lot;
     TextView lat;
     TextView lod;
-    Button browse;
 
 
 
@@ -36,21 +35,19 @@ public class Login extends AppCompatActivity implements Member.AsyncResponse
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        Intent i;
+        getSupportActionBar().setTitle("User Data");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
-        //ID's
+
         textView1 = findViewById(R.id.status);
         textView2 = findViewById(R.id.devid);
-        final String status = textView1.getText().toString();
         textView1.setText("Successful");
         Bundle bundle = getIntent().getExtras();
         String id = bundle.getString("id");
         String uname = bundle.getString("user");
 
-        //Log.e("M!",uname+"  "+id);
         textView2.setText(id);
-        Activity act = getParent();
 
 
        new Member(this).execute(uname,id);
@@ -77,6 +74,12 @@ public class Login extends AppCompatActivity implements Member.AsyncResponse
         lot.setText(MemberDetails.logintime1);
 
 
+    }
+    @Override
+    public boolean onSupportNavigateUp()
+    {
+        onBackPressed();
+        return true;
     }
 }
 class Member extends AsyncTask<Object,Void,String>
@@ -122,11 +125,6 @@ class Member extends AsyncTask<Object,Void,String>
         }
 
 
-        //Log.e("M6",MemberDetails.logintime1);
-
-
-
-        //Log.e("Details",MemberDetails.username1+"\n"+MemberDetails.lastaccesstime1+"\n"+MemberDetails.logintime1+"\n"+MemberDetails.loggeddevice1);
 
 
 
@@ -137,12 +135,10 @@ class Member extends AsyncTask<Object,Void,String>
     @Override
     protected void onPostExecute(String s) {
 
-       //
         delegate.processFinish(s);
 
 
 
-      //  return;
     }
 
     @Override

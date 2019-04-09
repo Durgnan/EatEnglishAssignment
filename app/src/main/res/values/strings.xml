@@ -5,4 +5,10 @@
     <string name="title_activity_browse2">Browse2</string>
     <integer name="speed1">200</integer>
     <integer name="speed2">50</integer>
+    <string-array name="settings_array">
+        <item>milisecond per question word</item>
+        <item>question time multiplier</item>
+        <item>millisecond per answer word</item>
+        <item>answer time multiplier</item>
+    </string-array>
 </resources>

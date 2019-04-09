@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerInParent="true"
+        android:id="@+id/splashimage"
         android:src="@drawable/eat_english"
         android:background="#1DE9B6"/>
 

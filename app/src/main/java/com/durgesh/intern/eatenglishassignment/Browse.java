@@ -51,6 +51,9 @@ public class Browse extends AppCompatActivity {
 
         WebSettings webSettings = myWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
+        webSettings.setBuiltInZoomControls(true);
+        myWebView.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
+        myWebView.setScrollbarFadingEnabled(false);
         myWebView.setWebViewClient(mWebViewClient);
         myWebView.addJavascriptInterface(new MyJavaScriptInterface() ,"android");
 //        myWebView.setWebViewClient(new WebViewClient() {
@@ -80,11 +83,12 @@ public class Browse extends AppCompatActivity {
         }
         @Override
            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-            if (url.contains("Do.php")||url.contains("ReadNotes.php"))
+                if (url.contains("Do.php")||url.contains("ReadNotes.php"))
             {
                 myWebView.setVisibility(View.INVISIBLE);
                 TextView t5 = findViewById(R.id.text5);
                 t5.setVisibility(View.VISIBLE);
+
             }
 
 
@@ -138,6 +142,16 @@ public class Browse extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onResume() {
+        myWebView.setVisibility(View.VISIBLE);
+        myWebView.goBack();
+        TextView t5 = findViewById(R.id.text5);
+        t5.setVisibility(View.INVISIBLE);
+
+        super.onResume();
+    }
+
 }
 class MyJavaScriptInterface {
     JSONArray jsonArray=null;
@@ -189,7 +203,6 @@ class MyJavaScriptInterface {
 
                     if (url.contains("Do.php")) {
                        // staticated.webView.loadUrl("about:blank");
-
                         Intent i  = new Intent(staticated.context,ShowContent.class).putExtra("url","DO").putExtra("json",jsonArray.toString()).putExtra("id",staticated.id).putExtra("user",staticated.uname);
                            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             staticated.context.startActivity(i);

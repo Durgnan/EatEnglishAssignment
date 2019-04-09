@@ -17,33 +17,33 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Sound: "
+                    android:text="Question Tone: "
                     android:textColor="#383838"
                     android:padding="25dp"
                     android:textSize="25sp"/>
-                <ImageView
+                <ToggleButton
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_volume_up_black_24dp"
-
-                    android:layout_marginLeft="10dp"/>
+                    android:layout_height="match_parent"
+                    android:background="#E2DCDC"
+                    android:id="@+id/v1"
+                    android:layout_margin="10dp"/>
             </LinearLayout>
             <View
                 android:layout_width="match_parent"
                 android:background="#161616"
                 android:layout_height="1dp"/>
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
                     <TextView
@@ -61,13 +61,16 @@
                         android:textColor="#000000"
                         android:padding="25dp"
                         android:textSize="25sp"/>
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <Spinner
+                        android:layout_width="match_parent"
+
                         android:layout_height="match_parent"
-                        android:text="(words per millisecond)"
-                        android:textColor="#383838"
                         android:padding="20dp"
-                        android:textSize="15sp"/>
+                        android:popupBackground="#524E4E"
+                        android:textAlignment="center"
+                        android:id="@+id/spinnerChoice"
+
+                        />
 
 
 
@@ -97,14 +100,16 @@
 
 
                 <SeekBar
+                    android:id="@+id/seekBar1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginHorizontal="10dp"
-                    android:paddingBottom="25dp"
-                    android:id="@+id/seekBar1"
-                    android:max="2500"
+                    android:layout_margin="25dp"
+                    android:max="2700"
                     android:min="200"
 
+                    android:paddingRight="5dp"
+                    android:thumbTint="@color/colorPrimary"
+                    android:progressTint="@color/colorPrimary"
                     />
             </LinearLayout>
             <View
@@ -113,23 +118,22 @@
                 android:layout_height="1dp"/>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Speak Sound: "
+                    android:text="Answer Tone: "
                     android:textColor="#383838"
                     android:padding="25dp"
                     android:textSize="25sp"/>
-                <ImageView
+                <ToggleButton
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_volume_up_black_24dp"
-
-                    android:layout_marginLeft="10dp"/>
-
+                    android:layout_height="match_parent"
+                    android:background="#E2DCDC"
+                    android:id="@+id/v2"
+                    android:layout_margin="10dp"/>
             </LinearLayout>
             <View
                 android:layout_width="match_parent"
@@ -137,17 +141,17 @@
                 android:layout_height="1dp"/>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Speed: "
+                        android:text="Speech Rate: "
                         android:textColor="#383838"
                         android:padding="25dp"
                         android:textSize="25sp"/>
@@ -193,7 +197,9 @@
                     android:id="@+id/seekBar2"
                     android:max="100"
                     android:min="0"
-
+                    android:thumbTint="@color/colorPrimary"
+                    android:progressTint="@color/colorPrimary"
+                    android:progress="50"
                     />
 
 
@@ -204,6 +210,34 @@
                 android:layout_width="match_parent"
                 android:background="#161616"
                 android:layout_height="1dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ToggleButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textOn="Question Speak On"
+                    android:textOff="Question Speak Off"
+                    android:background="#00ff00"
+                    android:layout_margin="15dp"
+                    android:id="@+id/v3"
+                    android:padding="5dp"
+
+
+                    />
+                <ToggleButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textOn="Answer Speak On"
+                    android:textOff="Answer Speak Off"
+                    android:background="#00ff00"
+                    android:layout_margin="15dp"
+                    android:padding="5dp"
+                    android:id="@+id/v4"
+
+
+                    />
+            </LinearLayout>
 
         </LinearLayout>
 
